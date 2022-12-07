@@ -24,14 +24,15 @@ export default function Login({ navigation }) {
       .then((response) => {
         console.log();
         if (response.status === 200) {
-          AsyncStorage.setItem("data", JSON.stringify(response.data));
+          AsyncStorage.setItem("login", JSON.stringify(response.data));
           navigation.navigate("Dashboard");
         } else {
           alert("Invalid Credentials");
         }
       })
-      .catch((error) => {
+      .catch((error,response) => {
         console.log(error);
+        console,log(response);
         alert("Invalid Credentials");
       });
   };
@@ -63,8 +64,8 @@ export default function Login({ navigation }) {
               placeholder="Password"
             />
           </View>
-          <Pressable className="w-56 p-2 m-1 margin-left  text-white-400 bg-yellow-300 shadow-lg active:bg-yellow-400 font-light rounded-full">
-            <Text className="text-center text-white font-bold" onPress={login}>
+          <Pressable className="w-56 p-2 m-1 margin-left  text-white-400 bg-yellow-300 shadow-lg active:bg-yellow-400 font-light rounded-full" onPress={login}>
+            <Text className="text-center text-white font-bold">
               Login
             </Text>
           </Pressable>
