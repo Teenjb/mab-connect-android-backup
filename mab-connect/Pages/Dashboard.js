@@ -16,7 +16,7 @@ export default function Dashboard({ navigation }) {
             <Text className=" font-medium text-white">
               Complete your data!
             </Text>
-            <Pressable className="w-full px-6 py-2 mx-10 flex-1 items-center justify-center rounded-full left-3 bg-yellow-300 active:bg-yellow-500 shadow-md">
+            <Pressable onPress={() => navigation.navigate('SignUpBeasiswaMAB')} className="w-full px-6 py-1 mx-4 flex-1 items-center justify-center rounded-full left-3 bg-yellow-300 active:bg-yellow-500 shadow-md">
               <Text
                 selectable={false}
                 className="text-white items-center  font-bold "

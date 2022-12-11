@@ -9,7 +9,6 @@ import {
 import React, { useState, useEffect } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import DropDownPicker from "react-native-dropdown-picker";
-import axios from "axios";
 import client from "../Api/Client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

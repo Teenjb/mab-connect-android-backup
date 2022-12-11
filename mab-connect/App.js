@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import Dashboard from "./Pages/Dashboard";
 import Profile from "./Pages/Profile";
+import SignUpBeasiswaMAB from "./Pages/SignUpBeasiswaMAB"
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
         >
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="SignUpBeasiswaMAB" component={SignUpBeasiswaMAB} />
           <Stack.Screen name="Dashboard" component={Dashboard} />
           <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
