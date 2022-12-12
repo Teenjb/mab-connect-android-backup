@@ -40,6 +40,8 @@ export default function SelectDonationSkripsi({ navigation }) {
                 .catch((error) => {
                     console.log()
                     alert('Skripsi already have an invoice (' + error.response.data.error.message + ')')
+                    if(error.response.data.error.details.status == 'pending')
+                        navigation.navigate("PaymentWebView", { url: error.response.data.error.details.invoiceurl , invoiceid : error.response.data.error.details.id})
                 })
 
 

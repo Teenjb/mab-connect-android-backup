@@ -22,11 +22,13 @@ export default function PaymentWebView({ route, navigation }) {
                             invoiceExist = 1
                             if (transaksi_datum.status == 'paid') {
                                 alert('Paid Successfully')
-                                navigation.navigate('Dashboard')
+                                navigation.pop();
+                                navigation.navigate('DashboardDonatur')
 
                             } else if (transaksi_datum.status == 'expired') {
                                 alert('Invoice Expired')
-                                navigation.navigate('Dashboard')
+                                navigation.pop();
+                                navigation.navigate('DashboardDonatur')
                             }
                         }
                     }
