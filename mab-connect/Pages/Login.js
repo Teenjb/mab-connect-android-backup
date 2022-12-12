@@ -22,17 +22,46 @@ export default function Login({ navigation }) {
     await client
       .post("/auth/local", loginData)
       .then((response) => {
-        console.log();
         if (response.status === 200) {
           AsyncStorage.setItem("login", JSON.stringify(response.data));
-          navigation.navigate("Dashboard");
+          client
+            .get("/awardee-datas/current", {
+              headers: {
+                Authorization: "Bearer " + response.data.jwt,
+              },
+            })
+            .then((response) => {
+              if (response.status === 200) {
+                AsyncStorage.setItem("detail", JSON.stringify(response.data));
+                navigation.navigate("DashboardAwardee");
+              } else {
+                console.log("Not Awardee");
+              }
+            }).catch((error) => {
+              client
+                  .get("/donatur-datas/current", {
+                    headers: {
+                      Authorization: "Bearer " + response.data.jwt,
+                    },
+                  })
+                  .then((response) => {
+                    if (response.status === 200) {
+                      AsyncStorage.setItem("detail", JSON.stringify(response.data));
+                      navigation.navigate("DashboardDonatur");
+                    } else {
+                      navigation.navigate("Dashboard");
+                    }
+                  }).catch((error) => {
+                    navigation.navigate("Dashboard");
+                  });
+            });
         } else {
           alert("Invalid Credentials");
         }
       })
-      .catch((error,response) => {
+      .catch((error, response) => {
         console.log(error);
-        console,log(response);
+        console.log(response);
         alert("Invalid Credentials");
       });
   };
@@ -64,10 +93,11 @@ export default function Login({ navigation }) {
               placeholder="Password"
             />
           </View>
-          <Pressable className="w-56 p-2 m-1 margin-left  text-white-400 bg-yellow-300 shadow-lg active:bg-yellow-400 font-light rounded-full" onPress={login}>
-            <Text className="text-center text-white font-bold">
-              Login
-            </Text>
+          <Pressable
+            className="w-56 p-2 m-1 margin-left  text-white-400 bg-yellow-300 shadow-lg active:bg-yellow-400 font-light rounded-full"
+            onPress={login}
+          >
+            <Text className="text-center text-white font-bold">Login</Text>
           </Pressable>
           <View className="py-2 mx-1 my-1 text-center items-center justify-center">
             <Text className="" onPress={() => navigation.navigate("SignUp")}>

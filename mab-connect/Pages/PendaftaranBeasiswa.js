@@ -2,8 +2,10 @@ import {
   TextInput,
   SafeAreaView,
   Pressable,
+  Image,
   Text,
   View,
+  ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -11,9 +13,9 @@ import client from "../Api/Client";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as DocumentPicker from 'expo-document-picker';
 
+import UniversalHeader from "../Component/UniversalHeader";
 
-
-export default function SignUpBeasiswaMAB({ navigation }) {
+export default function PendaftaranBeasiswa({ navigation }) {
   const [pondokanResult, setPondokanResult] = useState(null);
 
   const [BeasiswaMABData, setBeasiswaMABData] = useState({
@@ -114,71 +116,53 @@ export default function SignUpBeasiswaMAB({ navigation }) {
         console.log(error.response.data.error.message);
         alert(error.response.data.error.message);
       });
-
-
-
   }
 
-
-
   return (
-    <SafeAreaView className="flex-1 bg-[#FFF8EB]">
-      <View className="items-center justify-center px-10 py-5  top-10 my-6">
-        <Text className=" font-medium text-4xl">Beasiswa MAB</Text>
-      </View>
+    <SafeAreaView className="flex-1 w-screen bg-white">
+      <UniversalHeader lightText="Beasiswa " boldText = "MAB" />
       <View className="flex-1 items-center justify-center">
-        <View className="items-center justify-center">
-          <View className="w-screen justify-center px-20 ">
-            <View>
-              <Text className="justify-start w-full p-1 margin-left">Slip Gaji</Text>
-              <Pressable onPress={() => pickDocument('wali_slipgaji')} className="w-full p-2 m-1 items-center justify-center rounded-full  bg-orange-400 active:bg-orange-600 shadow-md">
-                <Text
-                  selectable={false}
-                  className="text-white font-bold "
-                >
-                  {doc.wali_slipgaji.name ? doc.wali_slipgaji.name : 'Upload Here'}
-
-                </Text>
-              </Pressable>
-            </View>
-            <View>
-              <Text className="justify-start w-full p-1 margin-left">Essay</Text>
-              <Pressable onPress={() => pickDocument('essaydoc')} className="w-full p-2 m-1 items-center justify-center rounded-full  bg-orange-400 active:bg-orange-600 shadow-md">
-                <Text
-                  selectable={false}
-                  className="text-white font-bold "
-                >
-                  {doc.essaydoc.name ? doc.essaydoc.name : 'Upload Here'}
-                </Text>
-              </Pressable>
-            </View>
-            <View>
-              <Text className="justify-start w-full p-1 margin-left">Transkrip Nilai</Text>
-              <Pressable onPress={() => pickDocument('transkripnilaidoc')} className="w-full p-2 m-1 items-center justify-center rounded-full  bg-orange-400 active:bg-orange-600 shadow-md">
-                <Text
-                  selectable={false}
-                  className="text-white font-bold "
-                >
-                  {doc.transkripnilaidoc.name ? doc.transkripnilaidoc.name : 'Upload Here'}
-                </Text>
-              </Pressable>
-            </View>
-            <View>
-              <Text className="justify-start w-full p-1 margin-left">CV</Text>
-              <Pressable onPress={() => pickDocument('cvdoc')} className="w-full p-2 m-1 items-center justify-center rounded-full  bg-orange-400 active:bg-orange-600 shadow-md">
-                <Text
-                  selectable={false}
-                  className="text-white font-bold "
-                >
-                  {doc.cvdoc.name ? doc.cvdoc.name : 'Upload Here'}
-                </Text>
-              </Pressable>
-            </View>
-
-
-            <View>
-              <Text className="justify-start w-full p-1 margin-left">Pondokan</Text>
-              <DropDownPicker
+        <View className="mt-20 w-3/4 items-center justify-center">
+          <View className="w-full items-start justify-center mt-2 pt-5">
+            <Text className="ml-4 mt-2 text-blue-600 font-bold">
+              Penghasilan Orang Tua
+            </Text>
+            <TextInput className="w-full p-2 m-1 margin-left rounded-full border border-1 border-orange-400" />
+            <Text className="ml-4 mt-2 text-blue-600  font-bold">
+              Daya Listrik
+            </Text>
+            <TextInput className="w-full p-2 m-1 margin-left rounded-full border border-1 border-orange-400" />
+          </View>
+          <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">Slip Gaji</Text>
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('wali_slipgaji')}>
+            <Text className="text-white items-center font-bold ">
+            {doc.wali_slipgaji.name ? doc.wali_slipgaji.name : 'Upload Here'}
+            </Text>
+          </Pressable>
+          <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">Essay</Text>
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('essaydoc')}>
+            <Text className="text-white items-center font-bold ">
+            {doc.essaydoc.name ? doc.essaydoc.name : 'Upload Here'}
+            </Text>
+          </Pressable>
+          <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">
+            Transkrip Nilai
+          </Text>
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('transkripnilaidoc')}>
+            <Text className="text-white items-center font-bold ">
+            {doc.transkripnilaidoc.name ? doc.transkripnilaidoc.name : 'Upload Here'}
+            </Text>
+          </Pressable>
+          <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">CV</Text>
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('cvdoc')}>
+            <Text className="text-white items-center font-bold ">
+            {doc.cvdoc.name ? doc.cvdoc.name : 'Upload Here'}
+            </Text>
+          </Pressable>
+          <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">
+            Pondokan
+          </Text>
+          <DropDownPicker
                 className="w-full p-2 m-1 margin-left  text-orange-400 font-light rounded-xl border border-1 border-orange-400"
                 style={{
                   backgroundColor: "transparent",
@@ -220,28 +204,17 @@ export default function SignUpBeasiswaMAB({ navigation }) {
                   setBeasiswaMABData({ ...BeasiswaMABData, pondokan: text });
                 }}
               />
-            </View>
-          </View>
-          <Pressable onPress={registerBeasiswaMAB} className="w-32 px-1 py-2 mx-1 mb-2 items-center justify-center rounded-full bg-yellow-300 active:bg-yellow-500 shadow-md">
-            <Text
-              selectable={false}
-              className="text-white items-center font-bold "
-            >
-              Register
-            </Text>
-          </Pressable>
-          <View className="py-2 mx-1 my-1 text-center justify-center">
-            <Text className="" onPress={() => navigation.navigate("Login")}>
-              Already have account? Login
-            </Text>
-          </View>
-          <View className="flex items-center justify-center">
-            <Text className=" flex py-5 justify-center items-center  text-sm font-light">
-              Developed by Mata Air Biru
-            </Text>
-          </View>
         </View>
-
+        <View>
+            <Pressable className="w-full px-6 py-2 mx-1 mt-5 items-center justify-center rounded-full bg-blue-600 active:bg-blue-700 font-bol800 shadow-md" onPress={registerBeasiswaMAB}>
+              <Text
+                selectable={false}
+                className="text-white items-center font-bold "
+              >
+                Daftar
+              </Text>
+            </Pressable>
+          </View>
       </View>
     </SafeAreaView>
   );

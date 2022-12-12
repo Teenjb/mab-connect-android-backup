@@ -50,11 +50,9 @@ export default function SignUp({ navigation }) {
 
   const register = async () => {
     setSignUpData({...signUpData, jeniskelamin: value})
-    console.log(signUpData);
     await client
       .post("/auth/local/register", signUpData)
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           AsyncStorage.setItem("login", JSON.stringify(response.data));
           navigation.navigate("Dashboard");

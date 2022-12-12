@@ -6,20 +6,21 @@ import {
   Text,
   View,
 } from "react-native";
+import ProfileHeader from "../Component/ProfileHeader";
 
 export default function Dashboard({ navigation }) {
   return (
-    <SafeAreaView className="flex-1 bg-[#FFF8EB]">
-      <View className="flex-1 items-center justify-center bg-[#FFF8EB]">
+    <SafeAreaView className="flex-1 bg-white">
+      <ProfileHeader name="User" status="Awardee"/>
+      <View className="flex-1 mt-48 items-center justify-start">
         <View className="mx-10">
           <View className="flex flex-row bg-blue-600 rounded-xl items-center justify-center px-6 py-2">
             <Text className=" font-medium text-white">
               Complete your data!
             </Text>
-            <Pressable onPress={() => navigation.navigate('SelectDonation')} className="w-full px-6 py-1 mx-4 flex-1 items-center justify-center rounded-full left-3 bg-yellow-300 active:bg-yellow-500 shadow-md">
+            <Pressable className="w-1/4 px-1 py-2 mx-4 items-center justify-center rounded-full left-3 bg-yellow-300 active:bg-yellow-500 shadow-md" onPress={() => navigation.navigate("Profile")}>
               <Text
-                selectable={false}
-                className="text-white items-center  font-bold "
+                className="text-white items-center font-bold"
               >
                 GO
               </Text>
