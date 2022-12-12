@@ -10,7 +10,7 @@ instance.interceptors.request.use(
   async config => {
     console.log('gegege')
     const token = JSON.parse( await AsyncStorage.getItem('login'))
-    if (token.jwt && config.url !='/auth/local') {
+    if (token.jwt && config.url !='/auth/local' && config.url !='/auth/local/register') {
       config.headers['Authorization'] = 'Bearer ' + token.jwt
     }
     // config.headers['Content-Type'] = 'application/json';

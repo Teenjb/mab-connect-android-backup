@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import client from "../Api/Client";
+import UniversalHeader from "../Component/UniversalHeader";
 import { isUndefined } from "util";
 //import { navigate } from "@react-navigation/routers/lib/typescript/src/CommonActions";
 
@@ -104,48 +105,53 @@ export default function SelectDonationSkripsi({ navigation }) {
 
 
     return (
-        <SafeAreaView className="flex-1 bg-[#FFF8EB]">
-            <View className="items-center justify-center px-10 py-5  top-10 my-6">
-                <Text className=" font-medium text-4xl">Daftar Skripsi</Text>
-            </View>
+        <SafeAreaView className="flex-1 bg-white">
+        <UniversalHeader lightText="Daftar " boldText="Skripsi"/>
 
-            <View style={{ flex: 1, padding: 24 }}>
-                {isLoading ? <Text>Loading...</Text> :
-                    (<View style={{
-                        flex: 1, flexDirection: 'column', justifyContent:
-                            'space-between'
-                    }}>
-                        <FlatList
-
-                            data={skripsi}
-                            keyExtractor={({ id }, index) => id}
-                            renderItem={({ item }) => (
-
-                                <Pressable onPress={() => initiatePay(item.skripsiid)} className=" p-5   rounded-3xl  bg-orange-400 active:bg-orange-600 shadow-md">
-                                    <View >
-                                        <View className='bg-green-100 rounded-3xl shadow-md p-2 m-2  items-center'>
-                                            <Text selectable={false} className="text-black font-bold text-xl">
-                                                {item.judul}
-                                            </Text>
-                                            <Text selectable={false} className="text-black text-base bg-green-400 px-20 py-2 rounded-3xl">
-                                                {item.namapenulis}
-                                            </Text>
-                                        </View>
-                                        <View className='bg-blue-100 rounded-3xl shadow-md p-2 m-2 items-center'>
-                                            <Text selectable={false} className="text-black text-base font-bold ">
-                                                {item.paidstatus == 'paid' ? 'Paid' : item.pengajuanbiaya}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </Pressable>
-
-                            )}
-
-                        />
+      <View className="flex-1 mt-28 p-8">
+        {isLoading ? (
+          <Text>Loading...</Text>
+        ) : (
+          <View>
+            <FlatList
+              data={skripsi}
+              keyExtractor={({ id }, index) => id}
+              renderItem={({ item }) => (
+                <Pressable
+                  onPress={() => initiatePay(item.skripsiid)}
+                  className="my-2 p-2 rounded-3xl  bg-orange-400 active:bg-orange-600 shadow-md"
+                >
+                  <View>
+                      <Text
+                        selectable={false}
+                        className="text-white px-4 font-bold text-xl"
+                      >
+                        {item.judul}
+                      </Text>
+                      <Text
+                        selectable={false}
+                        className="text-white text-base px-4 py-2 "
+                      >
+                        by {item.namapenulis}
+                      </Text>
+                    <View className={`${item.paidstatus === "paid"?"bg-green-400":"bg-red-400"} rounded-3xl shadow-md p-2 m-2 items-center`}>
+                      <Text
+                        selectable={false}
+                        className="text-white text-base font-bold"
+                      >
+                        {item.paidstatus == "paid"
+                          ? "Paid"
+                          : "Rp" + item.pengajuanbiaya}
+                      </Text>
                     </View>
-                    )}
-            </View>
-        </SafeAreaView>
+                  </View>
+                </Pressable>
+              )}
+            />
+          </View>
+        )}
+      </View>
+    </SafeAreaView>
     );
 
 

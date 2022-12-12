@@ -60,8 +60,8 @@ export default function SignUp({ navigation }) {
           alert("Invalid Input");
         }
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((error,response) => {
+        console.log(response);
         alert("Invalid Input");
       });
   };
