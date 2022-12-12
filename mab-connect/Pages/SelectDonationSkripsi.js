@@ -57,7 +57,7 @@ export default function SelectDonationSkripsi({ navigation }) {
                             alert('Internal Error, try again later')
                         })
 
-                    navigation.navigate("PaymentWebView", { url: invoice.data.invoiceurl })
+                    navigation.navigate("PaymentWebView", { url: invoice.data.invoiceurl, invoiceid : invoice.data.id })
                 } else {
                     alert('already have data')
                 }

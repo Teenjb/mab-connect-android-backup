@@ -43,7 +43,7 @@ export default function SelectDonationProposal({ navigation }) {
                     console.log()
                     alert('Proposal already have an invoice (' + error.response.data.error.message + ')')
                     if(error.response.data.error.details.status == 'pending')
-                        navigation.navigate("PaymentWebView", { url: error.response.data.error.details.invoiceurl })
+                        navigation.navigate("PaymentWebView", { url: error.response.data.error.details.invoiceurl , invoiceid : error.response.data.error.details.id})
                 })
 
             if (typeof invoice !== 'undefined') {
@@ -60,7 +60,7 @@ export default function SelectDonationProposal({ navigation }) {
                             alert('Internal Error, try again later')
                         })
 
-                    navigation.navigate("PaymentWebView", { url: invoice.data.invoiceurl })
+                    navigation.navigate("PaymentWebView", { url: invoice.data.invoiceurl, invoiceid : invoice.data.id })
                 } else {
                     alert('already have data')
                 }
