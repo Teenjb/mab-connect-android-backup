@@ -17,7 +17,7 @@ export default function SelectDonation({ navigation }) {
                 <View className="items-center justify-center">
                     <View className="w-screen justify-center px-20 ">
 
-                        <Pressable  className="w-full p-5 m-1 items-start justify-start rounded-3xl  bg-orange-400 active:bg-orange-600 shadow-md">
+                        <Pressable onPress={()=>{navigation.navigate('SelectDonationBeasiswa')}} className="w-full p-5 m-1 items-start justify-start rounded-3xl  bg-orange-400 active:bg-orange-600 shadow-md">
                             <Text selectable={false} className="text-white font-bold text-xl ">
                                 Beasiswa
                             </Text>

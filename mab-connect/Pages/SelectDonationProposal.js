@@ -14,56 +14,6 @@ export default function SelectDonationProposal({ navigation }) {
   const [proposal, setProposal] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  const initiatePay = async (id) => {
-    try {
-      let invoice;
-      console.log(id);
-      await client
-        .post("/proposal-datas/" + id + "/pay", {})
-        .then(async (response) => {
-          console.log(response.data);
-          //navigation.navigate("PaymentWebView", { url: invoice2 })
-          invoice = response;
-        })
-        .catch((error) => {
-          console.log();
-          alert(
-            "Proposal already have an invoice (" +
-              error.response.data.error.message +
-              ")"
-          );
-          if (error.response.data.error.details.status == "pending")
-            navigation.navigate("PaymentWebView", {
-              url: error.response.data.error.details.invoiceurl,
-              invoiceid: error.response.data.error.details.id,
-            });
-        });
-
-      if (typeof invoice !== "undefined") {
-        if (invoice.status == 200) {
-          await client
-            .post("/transaksi-datas/" + invoice.data.id + "/pay", {})
-            .then(function (response) {
-              invoice = response;
-              //navigation.navigate("PaymentWebView", { url: invoice2 })
-            })
-            .catch((error) => {
-              alert("Internal Error, try again later");
-            });
-
-          navigation.navigate("PaymentWebView", {
-            url: invoice.data.invoiceurl,
-            invoiceid: invoice.data.id,
-          });
-        } else {
-          alert("already have data");
-        }
-      }
-    } catch (error) {
-      alert(error);
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     client
@@ -79,6 +29,9 @@ export default function SelectDonationProposal({ navigation }) {
               judul: proposal_datum.judul,
               pengajuanbiaya: proposal_datum.pengajuanbiaya,
               proposalid: proposal_datum.id,
+              cvdoc :proposal_datum.cvdoc.url,
+              proposaldoc:proposal_datum.proposaldoc.url,
+              suratpernyataandoc:proposal_datum.suratpernyataandoc.url,
               paidstatus: proposal_datum.transaksi_datum
                 ? proposal_datum.transaksi_datum.status
                 : null,
@@ -96,7 +49,7 @@ export default function SelectDonationProposal({ navigation }) {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-        <UniversalHeader lightText="Daftar " boldText="Proposal"/>
+      <UniversalHeader lightText="Daftar " boldText="Proposal" />
 
       <View className="flex-1 mt-28 p-8">
         {isLoading ? (
@@ -108,23 +61,25 @@ export default function SelectDonationProposal({ navigation }) {
               keyExtractor={({ id }, index) => id}
               renderItem={({ item }) => (
                 <Pressable
-                  onPress={() => initiatePay(item.proposalid)}
+                  onPress={() => navigation.navigate("SingleDonationProposal", {
+                    proposal: item
+                  })}
                   className="my-2 p-2 rounded-3xl  bg-orange-400 active:bg-orange-600 shadow-md"
                 >
                   <View>
-                      <Text
-                        selectable={false}
-                        className="text-white px-4 font-bold text-xl"
-                      >
-                        {item.judul}
-                      </Text>
-                      <Text
-                        selectable={false}
-                        className="text-white text-base px-4 py-2 "
-                      >
-                        by {item.namapenulis}
-                      </Text>
-                    <View className={`${item.paidstatus === "paid"?"bg-green-400":"bg-red-400"} rounded-3xl shadow-md p-2 m-2 items-center`}>
+                    <Text
+                      selectable={false}
+                      className="text-white px-4 font-bold text-xl"
+                    >
+                      {item.judul}
+                    </Text>
+                    <Text
+                      selectable={false}
+                      className="text-white text-base px-4 py-2 "
+                    >
+                      by {item.namapenulis}
+                    </Text>
+                    <View className={`${item.paidstatus === "paid" ? "bg-green-400" : "bg-red-400"} rounded-3xl shadow-md p-2 m-2 items-center`}>
                       <Text
                         selectable={false}
                         className="text-white text-base font-bold"

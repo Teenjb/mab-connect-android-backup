@@ -9,17 +9,28 @@ import DashboardAwardee from "./Pages/DashboardAwardee";
 import DashboardDonatur from "./Pages/DashboardDonatur";
 import InformasBeasiswa from "./Pages/InformasiBeasiswa";
 import ListAwardee from "./Pages/ListAwardee";
+
 import PendaftaranBeasiswa from "./Pages/PendaftaranBeasiswa";
 import PendaftaranPenelitian from "./Pages/PendaftaranPenelitian";
 import PendaftaranSkripsi from "./Pages/PendaftaranSkripsi";
+
 import ProfileAwardee from "./Pages/ProfileAwardee";
 import ProfileAwardeeDonatur from "./Pages/ProfileAwardeeDonatur";
 import ProfileDonatur from "./Pages/ProfileDonatur";
 import ProfileHeader from "./Component/ProfileHeader";
 import SelectDonation from "./Pages/SelectDonation";
-import PaymentWebView from "./Pages/PaymentWebView";
+
+
 import SelectDonationProposal from "./Pages/SelectDonationProposal";
 import SelectDonationSkripsi from "./Pages/SelectDonationSkripsi";
+import SelectDonationBeasiswa from "./Pages/SelectDonationBeasiswa";
+
+import SingleDonationBeasiswa from "./Pages/SingleDonationBeasiswa";
+import SingleDonationSkripsi from "./Pages/SingleDonationSkripsi";
+import SingleDonationProposal from "./Pages/SingleDonationProposal";
+
+import PaymentWebView from "./Pages/PaymentWebView";
+import PDFView from "./Pages/PDFView";
 
 const Stack = createStackNavigator();
 
@@ -46,35 +57,28 @@ export default function App() {
         <Stack.Screen name="DashboardDonatur" component={DashboardDonatur} />
         <Stack.Screen name="InformasiBeasiswa" component={InformasBeasiswa} />
         <Stack.Screen name="ListAwardee" component={ListAwardee} />
-        <Stack.Screen
-          name="PendaftaranBeasiswa"
-          component={PendaftaranBeasiswa}
-        />
-        <Stack.Screen
-          name="PendaftaranPenelitian"
-          component={PendaftaranPenelitian}
-        />
-        <Stack.Screen
-          name="PendaftaranSkripsi"
-          component={PendaftaranSkripsi}
-        />
+
+        <Stack.Screen name="PendaftaranBeasiswa" component={PendaftaranBeasiswa}/>
+        <Stack.Screen name="PendaftaranPenelitian" component={PendaftaranPenelitian}/>
+        <Stack.Screen name="PendaftaranSkripsi" component={PendaftaranSkripsi}/>
+
         <Stack.Screen name="ProfileAwardee" component={ProfileAwardee} />
-        <Stack.Screen
-          name="ProfileAwardeeDonatur"
-          component={ProfileAwardeeDonatur}
-        />
+        <Stack.Screen name="ProfileAwardeeDonatur" component={ProfileAwardeeDonatur}/>
         <Stack.Screen name="ProfileDonatur" component={ProfileDonatur} />
         <Stack.Screen name="ProfileHeader" component={ProfileHeader} />
+
         <Stack.Screen name="SelectDonation" component={SelectDonation} />
-        <Stack.Screen
-          name="SelectDonationProposal"
-          component={SelectDonationProposal}
-        />
-        <Stack.Screen
-          name="SelectDonationSkripsi"
-          component={SelectDonationSkripsi}
-        />
-        <Stack.Screen name="PaymentWebView" component={PaymentWebView} />
+        <Stack.Screen name="SelectDonationProposal" component={SelectDonationProposal}/>
+        <Stack.Screen name="SelectDonationSkripsi" component={SelectDonationSkripsi}/>
+        <Stack.Screen name="SelectDonationBeasiswa" component={SelectDonationBeasiswa}/>
+
+        <Stack.Screen name="SingleDonationBeasiswa" component={SingleDonationBeasiswa}/>
+        <Stack.Screen name="SingleDonationSkripsi" component={SingleDonationSkripsi}/>
+        <Stack.Screen name="SingleDonationProposal" component={SingleDonationProposal}/>
+
+        
+        <Stack.Screen name="PaymentWebView" component={PaymentWebView}/>
+        <Stack.Screen name="PDFView" component={PDFView}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

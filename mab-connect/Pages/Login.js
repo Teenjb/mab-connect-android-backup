@@ -75,7 +75,7 @@ export default function Login({ navigation }) {
             <TextInput
               className="w-56 p-2 m-1 margin-left  text-orange-400 font-light rounded-xl border border-2 border-orange-400"
               value={loginData.identifier}
-              type="email"
+              autoCapitalize='none'
               keyboardType="email-address"
               onChangeText={(identifier) => {
                 setLoginData({ ...loginData, identifier: identifier });
@@ -85,8 +85,8 @@ export default function Login({ navigation }) {
             <TextInput
               className="w-56 p-2 m-1 margin-left  text-orange-400 font-light rounded-xl border border-2 border-orange-400"
               value={loginData.password}
-              type="password"
-              keyboardType="password"
+              secureTextEntry={true}
+              autoCapitalize='none'
               onChangeText={(password) => {
                 setLoginData({ ...loginData, password: password });
               }}

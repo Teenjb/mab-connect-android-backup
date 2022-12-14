@@ -17,7 +17,6 @@ import UniversalHeader from "../Component/UniversalHeader";
 
 export default function PendaftaranBeasiswa({ navigation }) {
   const [pondokanResult, setPondokanResult] = useState(null);
-
   const [BeasiswaMABData, setBeasiswaMABData] = useState({
     pondokan: "",
   });
@@ -81,14 +80,6 @@ export default function PendaftaranBeasiswa({ navigation }) {
     dataForm.append('files.cvdoc', doc.cvdoc);
     dataForm.append('files.transkripnilaidoc', doc.transkripnilaidoc);
 
-    const body = {
-      "data": BeasiswaMABData,
-      "files.essaydoc": doc.essaydoc,
-      "files.wali_slipgaji": doc.wali_slipgaji,
-      "files.cvdoc": doc.cvdoc,
-      "files.transkripnilaidoc": doc.transkripnilaidoc
-    };
-
     let loginData;
     try {
       loginData = JSON.parse(await AsyncStorage.getItem('login'));
@@ -134,28 +125,28 @@ export default function PendaftaranBeasiswa({ navigation }) {
             <TextInput className="w-full p-2 m-1 margin-left rounded-full border border-1 border-orange-400" />
           </View>
           <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">Slip Gaji</Text>
-          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('wali_slipgaji')}>
-            <Text className="text-white items-center font-bold ">
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-10 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('wali_slipgaji')}>
+            <Text className="text-white items-center font-bold " numberOfLines={1}>
             {doc.wali_slipgaji.name ? doc.wali_slipgaji.name : 'Upload Here'}
             </Text>
           </Pressable>
           <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">Essay</Text>
-          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('essaydoc')}>
-            <Text className="text-white items-center font-bold ">
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-10 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('essaydoc')}>
+            <Text className="text-white items-center font-bold " numberOfLines={1}>
             {doc.essaydoc.name ? doc.essaydoc.name : 'Upload Here'}
             </Text>
           </Pressable>
           <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">
             Transkrip Nilai
           </Text>
-          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('transkripnilaidoc')}>
-            <Text className="text-white items-center font-bold ">
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-10 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('transkripnilaidoc')}>
+            <Text className="text-white items-center font-bold " numberOfLines={1}>
             {doc.transkripnilaidoc.name ? doc.transkripnilaidoc.name : 'Upload Here'}
             </Text>
           </Pressable>
           <Text className="w-full items-start ml-4 mt-2 text-blue-600  font-bold">CV</Text>
-          <Pressable className="my-3 w-full rounded-full items-center justify-center px-20 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('cvdoc')}>
-            <Text className="text-white items-center font-bold ">
+          <Pressable className="my-3 w-full rounded-full items-center justify-center px-10 py-2 bg-orange-400 active:bg-orange-500 shadow-md" onPress={() => pickDocument('cvdoc')}>
+            <Text className="text-white items-center font-bold" numberOfLines={1}>
             {doc.cvdoc.name ? doc.cvdoc.name : 'Upload Here'}
             </Text>
           </Pressable>
