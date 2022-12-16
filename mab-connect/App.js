@@ -31,6 +31,7 @@ import SingleDonationProposal from "./Pages/SingleDonationProposal";
 
 import PaymentWebView from "./Pages/PaymentWebView";
 import PDFView from "./Pages/PDFView";
+import Confirmation from "./Pages/Confirmation";
 
 const Stack = createStackNavigator();
 
@@ -75,6 +76,7 @@ export default function App() {
         <Stack.Screen name="SingleDonationBeasiswa" component={SingleDonationBeasiswa}/>
         <Stack.Screen name="SingleDonationSkripsi" component={SingleDonationSkripsi}/>
         <Stack.Screen name="SingleDonationProposal" component={SingleDonationProposal}/>
+        <Stack.Screen name="Confirmation" component={Confirmation}/>
 
         
         <Stack.Screen name="PaymentWebView" component={PaymentWebView}/>

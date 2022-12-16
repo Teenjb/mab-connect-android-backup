@@ -99,8 +99,7 @@ export default function PendaftaranBeasiswa({ navigation }) {
       })
       .then((response) => {
         if (response.status === 200) {
-          alert("Successfully uploaded, Check the status at your dashboard");
-          navigation.navigate("Dashboard")
+          navigation.navigate("Confirmation")
         }
       })
       .catch((error) => {
